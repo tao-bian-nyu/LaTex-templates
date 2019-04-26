@@ -1,0 +1,47 @@
+% LR constraints - Drawing and filling with arcs and Bezier curves
+% Author: Henri Menke
+\documentclass[tikz, border=0pt]{standalone}
+%%%<
+%\usepackage{verbatim}
+%%%>
+\usetikzlibrary{calc}
+\tikzset{
+    vertex/.style = {
+        circle,
+        fill      = black,
+        outer sep = 2pt,
+        inner sep = 1pt,
+    }
+}
+\begin{document}
+\begin{tikzpicture}[>=stealth]
+  % We need to adjust the bounding box manually
+  % as the control points enlarge it.
+  \path[use as bounding box] (-0.5,-1) rectangle (5.5,1.5);
+
+%  \coordinate (o) at (0,0);
+  \draw node[vertex] (o) at (0,0) {};
+  \node[above] at (o) {start};
+    \draw node[vertex] (a) at (1,0) {};
+  \draw node[vertex] (d) at (4,0) {};
+  \node[above] at (d) {$end$};
+
+%  \draw (d) node[left] {} -- (-0.5,4.5);
+%  \filldraw[draw=blue, fill=blue!50]
+%    (-0.5,4.5) .. controls (-1,5) and (-0.75,4.5) .. ($(c)+(180:4pt)$)
+%    arc[start angle=180, end angle=270, radius=4pt]
+%    -- ($(b)+(90:4pt)$) .. controls (-1,5) .. (-0.5,4.5);
+%  \draw (d) node[right] {$e_2$} -- (0.5,4.5);
+%  \filldraw[draw=red, fill=red!50]
+%    (0.5,4.5) .. controls (1,5) and (0.75,4.5) .. ($(c)+(0:4pt)$)
+%    arc[start angle=0, end angle=-90, radius=4pt]
+%    -- ($(b)+(90:4pt)$) arc[start angle=90, end angle=0, radius=4pt]
+%    ($(b)+(0:4pt)$) .. controls (1,5) .. (0.5,4.5);
+%  \draw[red, thick, ->] (0.5,4.5) .. controls (1,5) .. ($(b)+(0:4pt)$);
+%  \draw[<-, dashed] (d) .. controls (-1,5) and (3,7) .. (a);
+  \draw[<-, dashed] (d) .. controls (5,-1) and (7,3) .. (a);
+
+  \draw[->] (a)-- node[left] {} (d);
+   \draw[->] (o)-- (a);
+\end{tikzpicture}
+\end{document}

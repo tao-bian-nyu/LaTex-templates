@@ -1,0 +1,68 @@
+%\documentclass{article}
+%\documentclass[onecolumn,journal]{IEEEtran}
+%\documentclass[a4paper]{article}
+
+%\documentclass[preview]{standalone}
+\documentclass[preview,varwidth=\maxdimen]{standalone}[2011/12/21]
+
+%\pagestyle{empty}
+
+%\usepackage[papersize={10cm,5cm},margin={0pt,0pt,0pt,0pt}]{geometry}
+
+\usepackage{amsmath,epstopdf}
+
+%\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{matrix,arrows,shapes,automata}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+ \usepackage{amsthm}
+ \usepackage{mathrsfs}
+
+
+
+\usepgflibrary{shapes.symbols}    
+\usepgflibrary[shapes.symbols]    
+\usetikzlibrary{shapes.symbols}  
+\usetikzlibrary[shapes.symbols]  
+
+
+
+
+
+\begin{document}
+ \begin{figure*}
+\begin{center}
+\begin{tikzpicture}
+\node [draw, rectangle,  text width=2.5cm, text height=1cm] (sys1) at (0,1.2) {};
+\node [draw, rectangle,  text width=2.5cm, text height=1cm] (sysk) at (0,-1.2) {};
+\node [draw, rectangle, text centered, text width=1.5cm, text height=1cm] (Delta) at (-4,1.2) {};
+\node [draw, rectangle, text centered] (output) at (3.5,1.2) {$C$};
+\node [draw, rectangle,  text width=3.2cm, text height=1cm] (sys2) at (0,-3.6) {};
+%\node(farright) at (6,1.2){};
+\node [] at (0,1.2) {nominal system};
+\node [] at (0,-3.6) {dynamic uncertainty};
+\node [] at (-4,1.2) {{\Large $\Delta(\cdot)$}};
+\node [] at (0,-1.2) {controller};
+%    \node [draw, rectangle,  text width=3cm, text height=1cm, anchor=base] (sys1) {{\Large system 1}};
+%    \node [draw, rectangle, below of=sys1,  text width=3cm] (sys2) {{\Large system 2}};   
+%
+%
+%   \draw [->]   (sys1)  |- (sys2);
+%%        \draw [->]   (sys2)  |- (sys1);
+\draw [->] (sys1) to node[text centered, above]{state} (output);
+\draw [->] (output) to node[text centered, above]{output} (7,1.2);
+%\draw [->] (output) to node[text centered, above]{$y$} (6,1.2);
+\draw [->] (Delta) to node[text centered, above]{$\Delta$} (sys1);
+%\draw [->] node[text centered, below]{}(3,1.2) to node[text centered, below]{}(3,-2.3) to (-4,-2.3) to node[text centered, left]{$x$} (Delta);
+\draw [->] node[text centered, below]{}(sysk) to (-2,-1.2) to (-2,0.5) to node[text centered, above]{u} (sys1);
+\draw [->] node[text centered, below]{}(4.5,1.2) to (4.5,-3.6) to node[text centered, above]{} (sys2);
+\draw [->] node[text centered, below]{}(2.5,1.2) to (2.5,-1.2) to node[text centered, above]{} (sysk);
+\draw [->] (sys2) to node[text centered, below]{}(-4,-3.6) to node[text centered, right]{} (Delta);
+\draw [->] node[text centered, below]{}(-7,1.2) to node[text centered, above]{disturbance} (Delta);
+%\draw [->] (-2.5,1.6) to [yshift=6](sys1);
+  \end{tikzpicture}
+  \end{center}
+ \end{figure*}
+\end{document}
